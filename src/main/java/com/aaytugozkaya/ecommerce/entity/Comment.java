@@ -6,26 +6,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 @Entity
-@Data
+@Table(name = "comment")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-@Table(name = "product")
-public class Product {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
     private String description;
-    private double price;
-    private String imageUrl;
-    private int stock;
+    private LocalDate commentDate;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<Comment> comments = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "product_id", nullable = false)
+    private Product product;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "user_id", nullable = false)
+    private User user;
 }
