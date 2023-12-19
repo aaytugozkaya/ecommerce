@@ -1,33 +1,41 @@
 package com.aaytugozkaya.ecommerce.service.impl;
 
+import com.aaytugozkaya.ecommerce.dto.ProductDto;
 import com.aaytugozkaya.ecommerce.dto.UserDto;
+import com.aaytugozkaya.ecommerce.entity.Product;
+import com.aaytugozkaya.ecommerce.exception.ResourceNotFoundException;
+import com.aaytugozkaya.ecommerce.repository.ProductRepository;
 import com.aaytugozkaya.ecommerce.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
+
+    ProductRepository productRepository;
     @Override
-    public List<UserDto> getAllUsers() {
+    public List<ProductDto> getAllProduct() {
         return null;
     }
 
     @Override
-    public UserDto getUserById(long id) {
+    public Product findById(long id) {
+        return productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("product","id",id));
+    }
+
+    @Override
+    public ProductDto createProduct(UserDto userDto) {
         return null;
     }
 
     @Override
-    public UserDto createUser(UserDto userDto) {
+    public ProductDto updateProduct(long id, UserDto userDto) {
         return null;
     }
 
     @Override
-    public UserDto updateUser(long id, UserDto userDto) {
-        return null;
-    }
-
-    @Override
-    public void deleteUser(long id) {
+    public void deleteProduct(long id) {
 
     }
 }

@@ -2,9 +2,11 @@ package com.aaytugozkaya.ecommerce.service.impl;
 
 import com.aaytugozkaya.ecommerce.dto.UserDto;
 import com.aaytugozkaya.ecommerce.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUsers() {

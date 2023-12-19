@@ -5,11 +5,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class ProductDto {
     private long id;
@@ -22,5 +28,5 @@ public class ProductDto {
 
     @JsonProperty("comment")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Set<CommentDto> comments = new HashSet<>();
+    private Set<CommentDto> commentsDto = new HashSet<>();
 }
